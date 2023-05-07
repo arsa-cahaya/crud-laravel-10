@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 
 class PostController extends Controller
@@ -21,5 +21,29 @@ class PostController extends Controller
     public function create(): View
     {
         return view('posts.create');
+    }
+
+    public function store(Request $request): RedirectResponse
+    {
+        //validate form
+        $this->validate($request, [
+            'image' => 'required|image|mimes:jpeg,jpg,png|max:2048',
+            'title' => 'required|min:5',
+            'content' => 'required|min:10'
+        ]);
+
+        //upload image
+        $image = $request->file('image');
+        $image->storeAs('public/posts', $image->hashName());
+
+        //create post
+        Post::create([
+            'image' => $image->hashName(),
+            'title' => $request->title,
+            'content' => $request->content
+        ]);
+
+        //redirect
+        return redirect()->route('posts.index')->with(['succes' => 'Data berhasil disimpan!!']);
     }
 }
