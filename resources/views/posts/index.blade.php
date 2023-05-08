@@ -7,6 +7,7 @@
     <title>Data Posts</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
 </head>
 <body style="background: lightgray">
 
@@ -14,12 +15,12 @@
         <div class="row">
             <div class="col-md-12">
                 <div>
-                    <h3 class="text-center my-4">Laravel 10</h3>
+                    <h3 class="text-center my-4">Marvel Cinematic Universe</h3>
                     <hr>
                 </div>
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
-                        <a href="{{ route('posts.create') }}" class="btn btn-md btn-success mb-3">Add</a>
+                        <a href="{{ route('posts.create') }}" class="btn btn-md btn-success mb-3"><i class="fi fi-rr-plus"></i></a>
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
@@ -39,11 +40,11 @@
                                         <td>{!! $post->content !!}</td>
                                         <td class="text-center">
                                             <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('posts.destroy', $post->id) }}" method="POST">
-                                                <a href="{{ route('posts.show', $post->id) }}" class="btn btn-sm btn-dark">SHOW</a>
-                                                <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-sm btn-primary">EDIT</a>
+                                                <a href="{{ route('posts.show', $post->id) }}" class="btn btn-sm btn-dark"><i class="fi fi-rr-info"></i></a>
+                                                <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-sm btn-primary"><i class="fi fi-rr-edit"></i></a>
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger">DELETE</button>
+                                                <button type="submit" class="btn btn-sm btn-danger"><i class="fi fi-rr-trash"></i></button>
                                             </form>
                                         </td>
                                     </tr>
