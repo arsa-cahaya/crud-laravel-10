@@ -46,4 +46,13 @@ class PostController extends Controller
         //redirect
         return redirect()->route('posts.index')->with(['succes' => 'Data berhasil disimpan!!']);
     }
+
+    public function show(string $id): View
+    {
+        //get post by ID
+        $post = Post::findOrFail($id);
+
+        //render view with post
+        return view('posts.show', compact('post'));
+    }
 }
